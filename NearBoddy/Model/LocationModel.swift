@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class Location{
+class LocationModel{
     
     var ido :Double!
     var keido:Double!
@@ -21,11 +21,7 @@ class Location{
     var thoroughfare:String = String()
     var subThoroughfare:String = String()
     var address:String = String()
-    
-}
+    var locationManager : CLLocationManager!
 
-extension Location : CLLocationManagerDelegate{
-    
-    
-    
+
 }
