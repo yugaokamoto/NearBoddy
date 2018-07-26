@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import Firebase
+import ProgressHUD
 
 class CreatePostViewController: UIViewController,CLLocationManagerDelegate {
 
@@ -24,6 +26,35 @@ class CreatePostViewController: UIViewController,CLLocationManagerDelegate {
         super.viewWillAppear(animated)
         catchLocationData()
     }
+
+    @IBAction func sharePost_touchUpInside(){
+        reverseGeocode(latitude: LModel.ido!, longitude: LModel.keido!)
+        ProgressHUD.show("投稿中です...")
+        sendDataToDatabase()
+    }
+    
+    func sendDataToDatabase() {
+        let newPostId = Api.Post.REF_POSTS.childByAutoId().key
+        let newPostReference = Api.Post.REF_POSTS.child(newPostId)
+        guard let currentUser = Auth.auth().currentUser else  {
+            return
+        }
+        let currentUserId = currentUser.uid
+        let timestamp = Int(Date().timeIntervalSince1970)
+        newPostReference.setValue(["uid": currentUserId ,"caption": captionTextView.text!,"location":NowlocationLabel.text!,"timestamp":timestamp], withCompletionBlock: {
+            (error, ref) in
+            if error != nil {
+                ProgressHUD.showError(error!.localizedDescription)
+                return
+            }
+            ProgressHUD.showSuccess("Success")
+            self.clean()
+        })
+    }
+    
+    func clean() {
+        self.captionTextView.text = ""
+    }
     
     func catchLocationData(){
         
@@ -34,13 +65,7 @@ class CreatePostViewController: UIViewController,CLLocationManagerDelegate {
         }
     }
     
-    /*******************************************
-     
-     位置情報取得に関するアラートメソッド
-     
-     ********************************************/
-    
-    
+
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
@@ -51,13 +76,7 @@ class CreatePostViewController: UIViewController,CLLocationManagerDelegate {
             break
         }
     }
-    
-    /**********************************
-     
-     位置情報が更新されるたびに呼ばれるメソッド
-     
-     ***********************************/
-    
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let newLocation = locations.last else {
             return
@@ -70,7 +89,6 @@ class CreatePostViewController: UIViewController,CLLocationManagerDelegate {
     }
     
     
-    // 逆ジオコーディング処理(緯度・経度を住所に変換)
     func reverseGeocode(latitude:CLLocationDegrees, longitude:CLLocationDegrees) {
         let location = CLLocation(latitude: latitude, longitude: longitude)
         let geocoder = CLGeocoder()
@@ -79,7 +97,6 @@ class CreatePostViewController: UIViewController,CLLocationManagerDelegate {
             let placeMark = placemark?.first
             if let country = placeMark?.country {
                 //                print("\(country)")
-                
                 self.LModel.country = country
             }
             if let administrativeArea = placeMark?.administrativeArea {
@@ -89,29 +106,23 @@ class CreatePostViewController: UIViewController,CLLocationManagerDelegate {
             }
             if let subAdministrativeArea = placeMark?.subAdministrativeArea {
                 //                print("\(subAdministrativeArea)")
-                
                 self.LModel.subAdministrativeArea = subAdministrativeArea
-                
             }
             
             if let locality = placeMark?.locality {
                 //                print("\(locality)")
-                
                 self.LModel.locality = locality
             }
             if let subLocality = placeMark?.subLocality {
                 //                print("\(subLocality)")
-                
                 self.LModel.subLocality = subLocality
             }
             if let thoroughfare = placeMark?.thoroughfare {
                 //                print("\(thoroughfare)")
-                
                 self.LModel.thoroughfare = thoroughfare
             }
             if let subThoroughfare = placeMark?.subThoroughfare {
                 print("\(subThoroughfare)")
-                
                 self.LModel.subThoroughfare = subThoroughfare
             }
             

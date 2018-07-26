@@ -55,7 +55,7 @@ class CreateRoomViewController: UIViewController ,CLLocationManagerDelegate,UINa
     
     func postRooms(){
         reverseGeocode(latitude: LModel.ido!, longitude: LModel.keido!)
-        ProgressHUD.show("Wating for...", interaction: false)
+        ProgressHUD.show("作成しています...", interaction: false)
         guard let roomName = roomNameTextField.text,!roomName.isEmpty else {
             ProgressHUD.showError("部屋名を入力してください")
             return
@@ -122,7 +122,7 @@ class CreateRoomViewController: UIViewController ,CLLocationManagerDelegate,UINa
                 return
             }
             
-            ProgressHUD.showSuccess("Success")
+            ProgressHUD.showSuccess("部屋を作成しました！")
             onSuccess()
         })
         

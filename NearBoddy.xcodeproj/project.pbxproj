@@ -13,6 +13,10 @@
 		921E733A2107FB02007E86DD /* RoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E73392107FB02007E86DD /* RoomModel.swift */; };
 		921E733C210805F4007E86DD /* RoomApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E733B210805F4007E86DD /* RoomApi.swift */; };
 		921E733E2108083B007E86DD /* RoomsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E733D2108083B007E86DD /* RoomsTableViewCell.swift */; };
+		921E7341210880EF007E86DD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E7340210880EF007E86DD /* UserModel.swift */; };
+		921E73432108822E007E86DD /* UserApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E73422108822E007E86DD /* UserApi.swift */; };
+		921E73452108C99B007E86DD /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E73442108C99B007E86DD /* PostModel.swift */; };
+		921E73472108C9FD007E86DD /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921E73462108C9FD007E86DD /* HomeTableViewCell.swift */; };
 		9276697B20FA547B00F60297 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9276697A20FA547B00F60297 /* AppDelegate.swift */; };
 		9276698020FA547C00F60297 /* Start.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9276697E20FA547C00F60297 /* Start.storyboard */; };
 		9276698220FA547F00F60297 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9276698120FA547F00F60297 /* Assets.xcassets */; };
@@ -48,6 +52,10 @@
 		921E73392107FB02007E86DD /* RoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomModel.swift; sourceTree = "<group>"; };
 		921E733B210805F4007E86DD /* RoomApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomApi.swift; sourceTree = "<group>"; };
 		921E733D2108083B007E86DD /* RoomsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsTableViewCell.swift; sourceTree = "<group>"; };
+		921E7340210880EF007E86DD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		921E73422108822E007E86DD /* UserApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserApi.swift; sourceTree = "<group>"; };
+		921E73442108C99B007E86DD /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		921E73462108C9FD007E86DD /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		9276697720FA547B00F60297 /* NearBoddy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NearBoddy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9276697A20FA547B00F60297 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9276697F20FA547C00F60297 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Start.storyboard; sourceTree = "<group>"; };
@@ -109,6 +117,7 @@
 				921E733221073E83007E86DD /* Api.swift */,
 				921E733421073EAF007E86DD /* PostApi.swift */,
 				921E733B210805F4007E86DD /* RoomApi.swift */,
+				921E73422108822E007E86DD /* UserApi.swift */,
 			);
 			path = Apis;
 			sourceTree = "<group>";
@@ -117,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				921E733D2108083B007E86DD /* RoomsTableViewCell.swift */,
+				921E73462108C9FD007E86DD /* HomeTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -193,6 +203,8 @@
 			children = (
 				927669AC20FB3B7000F60297 /* LocationModel.swift */,
 				921E73392107FB02007E86DD /* RoomModel.swift */,
+				921E7340210880EF007E86DD /* UserModel.swift */,
+				921E73442108C99B007E86DD /* PostModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,13 +353,17 @@
 				9276699720FAE42200F60297 /* ProfileViewController.swift in Sources */,
 				927669B420FB700000F60297 /* RoomsViewController.swift in Sources */,
 				9276699B20FAE7F700F60297 /* AuthService.swift in Sources */,
+				921E73432108822E007E86DD /* UserApi.swift in Sources */,
 				921E733C210805F4007E86DD /* RoomApi.swift in Sources */,
 				921E733521073EAF007E86DD /* PostApi.swift in Sources */,
 				9276699120FAE3AA00F60297 /* HomeViewController.swift in Sources */,
 				927669B220FB6F9500F60297 /* CreateRoomViewController.swift in Sources */,
+				921E73472108C9FD007E86DD /* HomeTableViewCell.swift in Sources */,
 				921E733321073E83007E86DD /* Api.swift in Sources */,
 				9276699320FAE3DC00F60297 /* PostViewController.swift in Sources */,
+				921E7341210880EF007E86DD /* UserModel.swift in Sources */,
 				921E733821074700007E86DD /* HelperService.swift in Sources */,
+				921E73452108C99B007E86DD /* PostModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

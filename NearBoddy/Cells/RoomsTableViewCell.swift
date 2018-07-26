@@ -23,6 +23,12 @@ class RoomsTableViewCell: UITableViewCell {
         }
     }
     
+    var user:UserModel?{
+        didSet{
+            setUserInfo()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -69,6 +75,15 @@ class RoomsTableViewCell: UITableViewCell {
     }
     
 }
+    
+    func setUserInfo(){
+        usernameLabel.text = user?.username
+        if let photoUrlString = user?.profileImageUrl {
+            let photoUrl = URL(string: photoUrlString)
+            profileImageView.sd_setImage(with: photoUrl, placeholderImage: UIImage(named: "placeholderImg"))
+            
+        }
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -11,5 +11,5 @@ struct Api {
     
     static var Post = PostApi()
     static var Room = RoomApi()
-    
+    static var User = UserApi()
 }
