@@ -26,6 +26,11 @@ class RoomsViewController: UIViewController {
 
     func loadRoom(){
         ProgressHUD.show("読み込み中です", interaction: false)
+        Api.Room.REF_ROOMS.observe(.value, with: { (snapshot) in
+            if !snapshot.exists() {
+                ProgressHUD.showSuccess("まだルームがありません！")
+            }
+        })
         
         Api.Room.REF_ROOMS.observe(.childAdded) { snapshot in
             print(Thread.isMainThread)
@@ -35,27 +40,35 @@ class RoomsViewController: UIViewController {
                     return
                 }
                 
-                let newRoom = RoomModel.transformRoom(dict: dict)
+                let newRoom = RoomModel.transformRoom(dict: dict, key: snapshot.key)
                 print("newRoom \(dict)")
                 self.fetchUser(uid: newRoom.uid!, completion: {
                     self.rooms.append(newRoom)
                     self.tableView.reloadData()
                 })
             }
-            ProgressHUD.showSuccess("読み込みが完了しました！")
+            ProgressHUD.dismiss()
         }
     }
     
     func fetchUser(uid: String, completion:  @escaping () -> Void ){
-        Api.User.REF_USER.child(uid).observeSingleEvent(of: .value, with: {
+        Api.User.REF_USERS.child(uid).observeSingleEvent(of: .value, with: {
             snapshot in
             if let dict = snapshot.value as? [String: Any] {
-                let user = UserModel.transformUser(dict: dict)
+                let user = UserModel.transformUser(dict: dict, key: snapshot.key)
                 self.users.append(user)
                 completion()
             }
         })
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MessageSegue"{
+            let chatVC = segue.destination as! ChatViewController
+            let roomId = sender as! String
+            chatVC.roomId = roomId
+        }
     }
     
 }
@@ -73,6 +86,17 @@ extension RoomsViewController: UITableViewDataSource,UITableViewDelegate{
         
         cell.room = room
         cell.user = user
+        cell.delegate = self
         return cell
     }
+    
+}
+
+extension RoomsViewController:RoomsTableViewCellDelegate{
+    
+    func goToChatVC(roomId: String) {
+        performSegue(withIdentifier: "MessageSegue", sender: roomId)
+    }
+    
+    
 }

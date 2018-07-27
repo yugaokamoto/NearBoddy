@@ -33,16 +33,17 @@ class HomeViewController: UIViewController {
                     self.tableView.reloadData()
                 })
             }
-            ProgressHUD.showSuccess("読み込みが完了しました！")
+            ProgressHUD.dismiss()
+//            ProgressHUD.showSuccess("読み込みが完了しました！")
         }
         
     }
     
     func fetchUser(uid: String, completion:  @escaping () -> Void ){
-        Api.User.REF_USER.child(uid).observeSingleEvent(of: .value, with: {
+        Api.User.REF_USERS.child(uid).observeSingleEvent(of: .value, with: {
             snapshot in
             if let dict = snapshot.value as? [String: Any] {
-                let user = UserModel.transformUser(dict: dict)
+                let user = UserModel.transformUser(dict: dict, key: snapshot.key)
                 self.users.append(user)
                 completion()
             }

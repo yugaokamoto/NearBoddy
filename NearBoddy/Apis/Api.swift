@@ -12,4 +12,7 @@ struct Api {
     static var Post = PostApi()
     static var Room = RoomApi()
     static var User = UserApi()
+    static var Message = MessageApi()
+    static var Room_Message = Room_MessageApi()
+    static var MyRooms = MyRoomsApi()
 }

@@ -49,6 +49,15 @@ class CreateRoomViewController: UIViewController ,CLLocationManagerDelegate,UINa
         present(pickerController, animated: true, completion: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "roomsVC" {
+            let roomsVC = segue.destination as! RoomsViewController
+            self.LModel.address = self.LModel.country + self.LModel.administrativeArea + self.LModel.subAdministrativeArea
+                + self.LModel.locality + self.LModel.subLocality + self.LModel.thoroughfare
+            roomsVC.adress = self.LModel.address
+        }
+    }
+    
     @IBAction func shareRoom_touchUpInside(){
       postRooms()
     }
@@ -63,6 +72,7 @@ class CreateRoomViewController: UIViewController ,CLLocationManagerDelegate,UINa
         if let roomImage = self.selectedImage, let imageData = UIImageJPEGRepresentation(roomImage, 0.1){
            uploadDataToServer(data: imageData, roomName: roomNameTextField.text!, onSuccess:{
                 self.clean_items()
+                self.performSegue(withIdentifier: "roomsVC", sender: nil)
             })
         }else{
             ProgressHUD.showError("画像を選択してください")
@@ -121,6 +131,14 @@ class CreateRoomViewController: UIViewController ,CLLocationManagerDelegate,UINa
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
+            
+            let myRoomsRef = Api.MyRooms.REF_MYROOMS.child(currentUserId).child(newRoomId)
+            myRoomsRef.setValue(["timestamp":timestamp], withCompletionBlock: { (error, ref) in
+                if error != nil{
+                    ProgressHUD.showError(error!.localizedDescription)
+                    return
+                }
+            })
             
             ProgressHUD.showSuccess("部屋を作成しました！")
             onSuccess()

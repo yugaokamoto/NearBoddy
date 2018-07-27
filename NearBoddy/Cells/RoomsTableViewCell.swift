@@ -9,6 +9,11 @@
 import UIKit
 import SDWebImage
 
+protocol RoomsTableViewCellDelegate {
+    func goToChatVC(roomId:String)
+//    func goToProfileUserVC(userId:String)
+//    func goToHashTag(tag:String)
+}
 class RoomsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView:UIImageView!
@@ -17,6 +22,8 @@ class RoomsTableViewCell: UITableViewCell {
     @IBOutlet weak var roomPhoto:UIImageView!
     @IBOutlet weak var timestampLabel:UILabel!
     @IBOutlet weak var locationLabel:UILabel!
+    
+    var delegate:RoomsTableViewCellDelegate?
     var room:RoomModel?{
         didSet{
             updateView()
@@ -29,16 +36,12 @@ class RoomsTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
     
    func updateView(){
     roomNameLabel.text = room?.roomName
     
     locationLabel.text = ((room?.country)! + (room?.administrativeArea)! + (room?.subAdministrativeArea)! + (room?.locality)! + (room?.subLocality)! + (room?.thoroughfare)! + (room?.subThoroughfare)! )
-    print("locationLabel \(locationLabel.text)")
+    print("locationLabel \(String(describing: locationLabel.text))")
 
     if let roomPhotoUrlString = room?.roomPhotoUrl{
         let roomPhotoUrl = URL(string: roomPhotoUrlString)
@@ -85,6 +88,31 @@ class RoomsTableViewCell: UITableViewCell {
         }
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.roomPhoto_TouchUpInside))
+        roomPhoto.addGestureRecognizer(tapGesture)
+        roomPhoto.isUserInteractionEnabled = true
+        
+        let tapGestureRoomNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.roomPhoto_TouchUpInside))
+        roomNameLabel.addGestureRecognizer(tapGestureRoomNameLabel)
+        roomNameLabel.isUserInteractionEnabled = true
+
+    }
+    
+    
+    @objc func roomPhoto_TouchUpInside(){
+        print("tapsuccsess")
+        if let id = room?.id{
+            delegate?.goToChatVC(roomId: id)
+        }
+    }
+    
+    override func prepareForReuse() {
+        profileImageView.image = UIImage(named: "placeholderImg")
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

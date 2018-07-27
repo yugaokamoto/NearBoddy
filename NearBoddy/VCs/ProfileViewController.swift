@@ -10,26 +10,57 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var ProfileReuseableView: ProfileReuseableView!
+    
+    var user:UserModel!
+    var rooms = [RoomModel]()
+    var users = [UserModel]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        fetchUser()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func fetchUser(){
+        Api.User.observeCurrentUser { (user) in
+            self.user = user
+            self.ProfileReuseableView.user = user
+            self.navigationItem.title = user.username
+            self.tableView.reloadData()
+        }
     }
-    */
+    
+   
+}
 
+
+extension ProfileViewController: UITableViewDataSource,UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return rooms.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RoomCell", for: indexPath) as! RoomsTableViewCell
+        let room = rooms[indexPath.row]
+        let user = users[indexPath.row]
+        
+        cell.room = room
+        cell.user = user
+        cell.delegate = self
+        return cell
+    }
+    
+}
+
+extension ProfileViewController:RoomsTableViewCellDelegate{
+    
+    func goToChatVC(roomId: String) {
+        performSegue(withIdentifier: "MessageSegue", sender: roomId)
+    }
+    
+    
 }

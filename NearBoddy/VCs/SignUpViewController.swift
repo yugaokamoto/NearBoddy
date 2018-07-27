@@ -27,6 +27,7 @@ class SignUpViewController: UIViewController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.handleSelectProfileView))
         profileImage.addGestureRecognizer(tapGesture)
         profileImage.isUserInteractionEnabled = true
+        
         signUp_Btn.isEnabled = false
         handleTextField()
     }

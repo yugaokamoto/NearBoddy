@@ -9,6 +9,29 @@
 import Foundation
 import Firebase
 class UserApi{
-    var REF_USER = Database.database().reference().child("users")
+    var REF_USERS = Database.database().reference().child("users")
+    
+    func observeUser(withId uid: String, completion: @escaping (UserModel) -> Void){
+        REF_USERS.child(uid).observeSingleEvent(of: DataEventType.value) { snapshot in
+            if let dict = snapshot.value as? [String: Any] {
+                let user = UserModel.transformUser(dict: dict, key: snapshot.key)
+                completion(user)
+            }
+        }
+    }
+    
+    func observeCurrentUser(completion: @escaping (UserModel) -> Void){
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        REF_USERS.child(currentUser.uid).observeSingleEvent(of: .value) { snapshot in
+            if let dict = snapshot.value as? [String: Any] {
+                let user = UserModel.transformUser(dict: dict, key: snapshot.key)
+                completion(user)
+            }
+        }
+    }
+    
     
 }

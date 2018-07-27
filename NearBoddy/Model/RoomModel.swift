@@ -25,8 +25,9 @@ class RoomModel {
 }
 
 extension RoomModel {
-    static func transformRoom(dict: [String: Any]) -> RoomModel {
+    static func transformRoom(dict: [String: Any],key: String) -> RoomModel {
         let room = RoomModel()
+        room.id = key
         room.roomName = dict["roomName"] as? String
         room.roomPhotoUrl = dict["roomPhotoUrl"] as? String
         room.uid = dict["uid"] as? String
