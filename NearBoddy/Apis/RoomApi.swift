@@ -20,14 +20,14 @@ class RoomApi{
 //            }
 //        }
 //    }
-//    func observeRoom(withId id:String, completion: @escaping (RoomModel) -> Void){
-//        REF_ROOMS.child(id).observeSingleEvent(of: DataEventType.value, with: {
-//            snapshot in
-//            if let dict = snapshot.value as? [String: Any] {
-//                let room = RoomModel.transformRoom(dict: dict, key: snapshot.key)
-//                completion(room)
-//            }
-//        })
-//    }
+    func observeRoom(withId id:String, completion: @escaping (RoomModel) -> Void){
+        REF_ROOMS.child(id).observeSingleEvent(of: DataEventType.value, with: {
+            snapshot in
+            if let dict = snapshot.value as? [String: Any] {
+                let room = RoomModel.transformRoom(dict: dict, key: snapshot.key)
+                completion(room)
+            }
+        })
+    }
 
 }

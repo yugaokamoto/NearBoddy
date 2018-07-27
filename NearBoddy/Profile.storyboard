@@ -11,6 +11,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--ChatViewController-->
+        <scene sceneID="Mie-NL-pNB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Post" referencedIdentifier="ChatViewController" id="Px7-uF-GKC" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zup-qw-WaO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2086" y="789"/>
+        </scene>
         <!--Profile View Controller-->
         <scene sceneID="An3-SX-s89">
             <objects>
@@ -289,6 +297,7 @@
                     <connections>
                         <outlet property="ProfileReuseableView" destination="MDV-CX-DSt" id="4qX-EN-4EE"/>
                         <outlet property="tableView" destination="sTK-X2-nm0" id="9GM-OH-qhG"/>
+                        <segue destination="Px7-uF-GKC" kind="show" identifier="MessageSegue" id="iZd-1Y-hAH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XiM-UG-2yD" userLabel="First Responder" sceneMemberID="firstResponder"/>

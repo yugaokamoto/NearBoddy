@@ -471,7 +471,7 @@
         <!--Chat View Controller-->
         <scene sceneID="0qu-NT-AD9">
             <objects>
-                <viewController id="OPB-zi-gIF" customClass="ChatViewController" customModule="NearBoddy" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatViewController" id="OPB-zi-gIF" customClass="ChatViewController" customModule="NearBoddy" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="98d-pX-YwO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

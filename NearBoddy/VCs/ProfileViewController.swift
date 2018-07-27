@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController {
 
@@ -21,7 +22,10 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.dataSource = self
+        tableView.delegate = self
         fetchUser()
+        fetchMyRooms()
     }
     
     func fetchUser(){
@@ -30,6 +34,28 @@ class ProfileViewController: UIViewController {
             self.ProfileReuseableView.user = user
             self.navigationItem.title = user.username
             self.tableView.reloadData()
+        }
+    }
+    
+    func fetchMyRooms(){
+        guard let currentUser = Auth.auth().currentUser else {
+            return
+        }
+        Api.MyRooms.REF_MYROOMS.child(currentUser.uid).observe(.childAdded, with: {
+            snapshot in
+            Api.Room.observeRoom(withId: snapshot.key, completion: { (room) in
+                print(room.id!)
+                self.rooms.append(room)
+                self.tableView.reloadData()
+            })
+        })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "MessageSegue"{
+            let chatVC = segue.destination as! ChatViewController
+            let roomId = sender as! String
+            chatVC.roomId = roomId
         }
     }
     
@@ -44,9 +70,10 @@ extension ProfileViewController: UITableViewDataSource,UITableViewDelegate{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "RoomCell", for: indexPath) as! RoomsTableViewCell
         let room = rooms[indexPath.row]
-        let user = users[indexPath.row]
+        let user = self.user
         
         cell.room = room
         cell.user = user
