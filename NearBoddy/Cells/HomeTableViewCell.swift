@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol HomeTableViewCellDelegate {
+    func goToProfileUserVC(userId:String)
+}
+
 class HomeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var profileImageView:UIImageView!
@@ -15,6 +19,7 @@ class HomeTableViewCell: UITableViewCell {
     @IBOutlet weak var timestampLabel:UILabel!
     @IBOutlet weak var locationLabel:UILabel!
     @IBOutlet weak var captionLabel:UILabel!
+    var delegate :HomeTableViewCellDelegate?
     
     var post:PostModel?{
         didSet{
@@ -74,7 +79,21 @@ class HomeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
+        userNameLabel.addGestureRecognizer(tapGesture)
+        userNameLabel.isUserInteractionEnabled = true
         
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
+        profileImageView.addGestureRecognizer(tapGesture2)
+        profileImageView.isUserInteractionEnabled = true
+    }
+    
+    @objc func nameLabel_TouchUpInside(){
+        print("touch")
+        if let id = user?.id{
+            delegate?.goToProfileUserVC(userId: id)
+            print("\(id)")
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

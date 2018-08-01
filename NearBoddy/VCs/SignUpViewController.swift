@@ -69,7 +69,8 @@ class SignUpViewController: UIViewController {
         view.endEditing(true)
         ProgressHUD.show("Wating for...", interaction: false)
         if let profileImage = self.selectedImage, let imageData = UIImageJPEGRepresentation(profileImage, 0.1){
-            AuthService.signUp(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, imageData: imageData, onSuccess: {
+            let imageData2 = UIImageJPEGRepresentation(UIImage(named: "Placeholder-image")!, 0.1)
+            AuthService.signUp(username: usernameTextField.text!, email: emailTextField.text!, password: passwordTextField.text!, imageData: imageData,imageData2: imageData2!, onSuccess: {
                 ProgressHUD.showSuccess("Success")
                 self.performSegue(withIdentifier: "signUpToTabBar", sender: nil)
             }, onError: { (errorString) in

@@ -10,31 +10,54 @@ import UIKit
 import ProgressHUD
 class HomeViewController: UIViewController {
 
+    var refreshControl = UIRefreshControl()
+    
     @IBOutlet weak var tableView:UITableView!
     var posts = [PostModel]()
     var users = [UserModel]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     tableView.dataSource = self
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+        
     loadPost()
+    refreshControl.endRefreshing()
     }
+    
+    @objc func refresh(){
+        posts = [PostModel]()
+        users = [UserModel]()
+        loadPost()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
     
     func loadPost(){
         ProgressHUD.show("読み込み中です", interaction: false)
+        Api.Post.REF_POSTS.observe(.value, with: { (snapshot) in
+            if !snapshot.exists() {
+                ProgressHUD.showSuccess("まだ投稿がありません！")
+            }
+        })
         
         Api.Post.REF_POSTS.observe(.childAdded) { snapshot in
             print(Thread.isMainThread)
             if let dict = snapshot.value as? [String: Any] {
                 
-                let newPost = PostModel.transformPost(dict: dict)
+                let newPost = PostModel.transformPost(dict: dict, key: snapshot.key)
                 print("newRoom \(dict)")
                 self.fetchUser(uid: newPost.uid!, completion: {
-                    self.posts.append(newPost)
+                    self.posts.insert(newPost, at: 0)
                     self.tableView.reloadData()
                 })
             }
             ProgressHUD.dismiss()
-//            ProgressHUD.showSuccess("読み込みが完了しました！")
         }
         
     }
@@ -44,11 +67,10 @@ class HomeViewController: UIViewController {
             snapshot in
             if let dict = snapshot.value as? [String: Any] {
                 let user = UserModel.transformUser(dict: dict, key: snapshot.key)
-                self.users.append(user)
+               self.users.insert(user, at: 0)
                 completion()
             }
         })
-        
     }
 
     @IBAction func logOut_touchUpInside(_ sender: Any) {
@@ -58,6 +80,15 @@ class HomeViewController: UIViewController {
             self.present(signInVC, animated: true, completion: nil)
         }) { (errorMessage) in
             ProgressHUD.showError(errorMessage)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ProfileUserSegue"{
+            let profileUserVC = segue.destination as! ProfileUserViewController
+            let userId = sender as! String
+            profileUserVC.userId = userId
+            profileUserVC.delegate = self
         }
     }
 
@@ -76,6 +107,26 @@ extension HomeViewController: UITableViewDataSource,UITableViewDelegate{
         
         cell.post = post
         cell.user = user
+        cell.delegate = self
         return cell
     }
 }
+
+extension HomeViewController:HomeTableViewCellDelegate{
+    func goToProfileUserVC(userId: String) {
+        performSegue(withIdentifier: "ProfileUserSegue", sender: userId)
+    }
+}
+
+extension HomeViewController:ProfileReuseableViewDelegate{
+    
+    func updateFollowbutton(forUser user: UserModel) {
+        for u in self.users{
+            if u.id == user.id{
+                u.isFollowing = user.isFollowing
+                self.tableView.reloadData()
+            }
+        }
+    }
+}
+

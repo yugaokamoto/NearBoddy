@@ -46,6 +46,18 @@
 		927669B620FB702300F60297 /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927669B520FB702300F60297 /* CreatePostViewController.swift */; };
 		927B4574210B37C6008DE0E5 /* MyRoomsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B4573210B37C6008DE0E5 /* MyRoomsApi.swift */; };
 		927B4576210B436E008DE0E5 /* ProfileReuseableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B4575210B436E008DE0E5 /* ProfileReuseableView.swift */; };
+		927B457B210C064B008DE0E5 /* SettingTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B457A210C064B008DE0E5 /* SettingTableViewController.swift */; };
+		927B457D210F28D6008DE0E5 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B457C210F28D6008DE0E5 /* PeopleTableViewCell.swift */; };
+		927B457F210F28F2008DE0E5 /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B457E210F28F2008DE0E5 /* PeopleViewController.swift */; };
+		927B4581210F2AE1008DE0E5 /* ProfileUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B4580210F2AE1008DE0E5 /* ProfileUserViewController.swift */; };
+		927B4583210F31E0008DE0E5 /* FollowApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B4582210F31E0008DE0E5 /* FollowApi.swift */; };
+		927B4585210F5622008DE0E5 /* MyPostsApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B4584210F5622008DE0E5 /* MyPostsApi.swift */; };
+		927B4587210FE491008DE0E5 /* MyPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B4586210FE491008DE0E5 /* MyPostsViewController.swift */; };
+		927B4589210FE4A8008DE0E5 /* FollowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B4588210FE4A8008DE0E5 /* FollowingViewController.swift */; };
+		927B458B210FE4B8008DE0E5 /* FollowerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B458A210FE4B8008DE0E5 /* FollowerViewController.swift */; };
+		927B458E21104E4C008DE0E5 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B458D21104E4C008DE0E5 /* Notification.swift */; };
+		927B459021104E73008DE0E5 /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B458F21104E73008DE0E5 /* NotificationModel.swift */; };
+		927B459221104F0A008DE0E5 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927B459121104F0A008DE0E5 /* NotificationTableViewCell.swift */; };
 		C4C88D3582AD226375AB5D29 /* Pods_NearBoddy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B7E4E36E58D0D2944C187B2 /* Pods_NearBoddy.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +106,18 @@
 		927669B520FB702300F60297 /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		927B4573210B37C6008DE0E5 /* MyRoomsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyRoomsApi.swift; sourceTree = "<group>"; };
 		927B4575210B436E008DE0E5 /* ProfileReuseableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileReuseableView.swift; sourceTree = "<group>"; };
+		927B457A210C064B008DE0E5 /* SettingTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewController.swift; sourceTree = "<group>"; };
+		927B457C210F28D6008DE0E5 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
+		927B457E210F28F2008DE0E5 /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
+		927B4580210F2AE1008DE0E5 /* ProfileUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserViewController.swift; sourceTree = "<group>"; };
+		927B4582210F31E0008DE0E5 /* FollowApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowApi.swift; sourceTree = "<group>"; };
+		927B4584210F5622008DE0E5 /* MyPostsApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsApi.swift; sourceTree = "<group>"; };
+		927B4586210FE491008DE0E5 /* MyPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPostsViewController.swift; sourceTree = "<group>"; };
+		927B4588210FE4A8008DE0E5 /* FollowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingViewController.swift; sourceTree = "<group>"; };
+		927B458A210FE4B8008DE0E5 /* FollowerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerViewController.swift; sourceTree = "<group>"; };
+		927B458D21104E4C008DE0E5 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		927B458F21104E73008DE0E5 /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		927B459121104F0A008DE0E5 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,9 +156,12 @@
 				921E733421073EAF007E86DD /* PostApi.swift */,
 				921E733B210805F4007E86DD /* RoomApi.swift */,
 				921E73422108822E007E86DD /* UserApi.swift */,
+				927B4582210F31E0008DE0E5 /* FollowApi.swift */,
 				921E73532109FC88007E86DD /* MessageApi.swift */,
 				921E73552109FCB0007E86DD /* Room_MessageApi.swift */,
 				927B4573210B37C6008DE0E5 /* MyRoomsApi.swift */,
+				927B4584210F5622008DE0E5 /* MyPostsApi.swift */,
+				927B458D21104E4C008DE0E5 /* Notification.swift */,
 			);
 			path = Apis;
 			sourceTree = "<group>";
@@ -145,6 +172,8 @@
 				921E733D2108083B007E86DD /* RoomsTableViewCell.swift */,
 				921E73462108C9FD007E86DD /* HomeTableViewCell.swift */,
 				921E73502109F7FB007E86DD /* MessageTableViewCell.swift */,
+				927B457C210F28D6008DE0E5 /* PeopleTableViewCell.swift */,
+				927B459121104F0A008DE0E5 /* NotificationTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -207,13 +236,9 @@
 				9276698C20FAE37A00F60297 /* SignInViewController.swift */,
 				9276698E20FAE38F00F60297 /* SignUpViewController.swift */,
 				9276699020FAE3AA00F60297 /* HomeViewController.swift */,
-				9276699220FAE3DB00F60297 /* PostViewController.swift */,
-				927669B320FB700000F60297 /* RoomsViewController.swift */,
-				927669B120FB6F9400F60297 /* CreateRoomViewController.swift */,
-				921E734821094D54007E86DD /* ChatViewController.swift */,
-				927669B520FB702300F60297 /* CreatePostViewController.swift */,
+				927B4577210C05C6008DE0E5 /* PostVCs */,
 				9276699420FAE3FA00F60297 /* NotificationViewController.swift */,
-				9276699620FAE42200F60297 /* ProfileViewController.swift */,
+				927B458C21103ABE008DE0E5 /* ProfileVCs */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -226,8 +251,35 @@
 				921E7340210880EF007E86DD /* UserModel.swift */,
 				921E73442108C99B007E86DD /* PostModel.swift */,
 				921E734E2109F70C007E86DD /* MessageModel.swift */,
+				927B458F21104E73008DE0E5 /* NotificationModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		927B4577210C05C6008DE0E5 /* PostVCs */ = {
+			isa = PBXGroup;
+			children = (
+				9276699220FAE3DB00F60297 /* PostViewController.swift */,
+				927669B320FB700000F60297 /* RoomsViewController.swift */,
+				927669B120FB6F9400F60297 /* CreateRoomViewController.swift */,
+				921E734821094D54007E86DD /* ChatViewController.swift */,
+				927669B520FB702300F60297 /* CreatePostViewController.swift */,
+			);
+			path = PostVCs;
+			sourceTree = "<group>";
+		};
+		927B458C21103ABE008DE0E5 /* ProfileVCs */ = {
+			isa = PBXGroup;
+			children = (
+				9276699620FAE42200F60297 /* ProfileViewController.swift */,
+				927B4580210F2AE1008DE0E5 /* ProfileUserViewController.swift */,
+				927B457A210C064B008DE0E5 /* SettingTableViewController.swift */,
+				927B457E210F28F2008DE0E5 /* PeopleViewController.swift */,
+				927B4586210FE491008DE0E5 /* MyPostsViewController.swift */,
+				927B4588210FE4A8008DE0E5 /* FollowingViewController.swift */,
+				927B458A210FE4B8008DE0E5 /* FollowerViewController.swift */,
+			);
+			path = ProfileVCs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +366,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-NearBoddy/Pods-NearBoddy-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/ImagePicker/ImagePicker.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQMessagesViewController/JSQMessagesViewController.framework",
 				"${BUILT_PRODUCTS_DIR}/JSQSystemSoundPlayer/JSQSystemSoundPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework",
@@ -325,6 +378,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ImagePicker.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQMessagesViewController.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSQSystemSoundPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ProgressHUD.framework",
@@ -362,7 +416,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				927B459221104F0A008DE0E5 /* NotificationTableViewCell.swift in Sources */,
 				9276698F20FAE38F00F60297 /* SignUpViewController.swift in Sources */,
+				927B457B210C064B008DE0E5 /* SettingTableViewController.swift in Sources */,
 				927669B620FB702300F60297 /* CreatePostViewController.swift in Sources */,
 				9276698D20FAE37A00F60297 /* SignInViewController.swift in Sources */,
 				921E733A2107FB02007E86DD /* RoomModel.swift in Sources */,
@@ -372,25 +428,35 @@
 				9276699520FAE3FA00F60297 /* NotificationViewController.swift in Sources */,
 				9276697B20FA547B00F60297 /* AppDelegate.swift in Sources */,
 				9276699720FAE42200F60297 /* ProfileViewController.swift in Sources */,
+				927B4581210F2AE1008DE0E5 /* ProfileUserViewController.swift in Sources */,
 				921E73562109FCB0007E86DD /* Room_MessageApi.swift in Sources */,
 				927B4576210B436E008DE0E5 /* ProfileReuseableView.swift in Sources */,
 				921E734921094D54007E86DD /* ChatViewController.swift in Sources */,
+				927B457F210F28F2008DE0E5 /* PeopleViewController.swift in Sources */,
 				921E73512109F7FB007E86DD /* MessageTableViewCell.swift in Sources */,
 				927669B420FB700000F60297 /* RoomsViewController.swift in Sources */,
+				927B4587210FE491008DE0E5 /* MyPostsViewController.swift in Sources */,
 				9276699B20FAE7F700F60297 /* AuthService.swift in Sources */,
+				927B4583210F31E0008DE0E5 /* FollowApi.swift in Sources */,
 				921E73542109FC88007E86DD /* MessageApi.swift in Sources */,
 				921E73432108822E007E86DD /* UserApi.swift in Sources */,
 				921E733C210805F4007E86DD /* RoomApi.swift in Sources */,
 				921E733521073EAF007E86DD /* PostApi.swift in Sources */,
+				927B4585210F5622008DE0E5 /* MyPostsApi.swift in Sources */,
 				927B4574210B37C6008DE0E5 /* MyRoomsApi.swift in Sources */,
 				9276699120FAE3AA00F60297 /* HomeViewController.swift in Sources */,
+				927B459021104E73008DE0E5 /* NotificationModel.swift in Sources */,
+				927B4589210FE4A8008DE0E5 /* FollowingViewController.swift in Sources */,
 				927669B220FB6F9500F60297 /* CreateRoomViewController.swift in Sources */,
 				921E734F2109F70C007E86DD /* MessageModel.swift in Sources */,
 				921E73472108C9FD007E86DD /* HomeTableViewCell.swift in Sources */,
 				921E733321073E83007E86DD /* Api.swift in Sources */,
 				9276699320FAE3DC00F60297 /* PostViewController.swift in Sources */,
+				927B457D210F28D6008DE0E5 /* PeopleTableViewCell.swift in Sources */,
 				921E7341210880EF007E86DD /* UserModel.swift in Sources */,
+				927B458E21104E4C008DE0E5 /* Notification.swift in Sources */,
 				921E733821074700007E86DD /* HelperService.swift in Sources */,
+				927B458B210FE4B8008DE0E5 /* FollowerViewController.swift in Sources */,
 				921E73452108C99B007E86DD /* PostModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

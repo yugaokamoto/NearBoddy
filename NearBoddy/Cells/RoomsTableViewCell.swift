@@ -11,8 +11,7 @@ import SDWebImage
 
 protocol RoomsTableViewCellDelegate {
     func goToChatVC(roomId:String)
-//    func goToProfileUserVC(userId:String)
-//    func goToHashTag(tag:String)
+    func goToProfileUserVC(userId:String)
 }
 class RoomsTableViewCell: UITableViewCell {
     
@@ -99,6 +98,15 @@ class RoomsTableViewCell: UITableViewCell {
         roomNameLabel.addGestureRecognizer(tapGestureRoomNameLabel)
         roomNameLabel.isUserInteractionEnabled = true
 
+        let tapGestureUserLabel = UITapGestureRecognizer(target: self, action: #selector(self.user_TouchUpInside))
+        usernameLabel.addGestureRecognizer(tapGestureUserLabel)
+        usernameLabel.isUserInteractionEnabled = true
+        
+        let tapGestureProfileImageView = UITapGestureRecognizer(target: self, action: #selector(self.user_TouchUpInside))
+        profileImageView.addGestureRecognizer(tapGestureProfileImageView)
+        profileImageView.isUserInteractionEnabled = true
+        
+        
     }
     
     
@@ -106,6 +114,13 @@ class RoomsTableViewCell: UITableViewCell {
         print("tapsuccsess")
         if let id = room?.id{
             delegate?.goToChatVC(roomId: id)
+        }
+    }
+    
+    @objc func user_TouchUpInside(){
+        print("tapsuccsess")
+        if let id = user?.id{
+            delegate?.goToProfileUserVC(userId: id)
         }
     }
     

@@ -15,4 +15,8 @@ struct Api {
     static var Message = MessageApi()
     static var Room_Message = Room_MessageApi()
     static var MyRooms = MyRoomsApi()
+    static var MyPosts = MyPostsApi()
+    static var Follow = FollowApi()
+    static var Notification = NotificationApi()
+    
 }

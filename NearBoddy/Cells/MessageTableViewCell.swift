@@ -9,12 +9,17 @@
 import UIKit
 import ProgressHUD
 
+protocol MessageTableViewCellDelegate {
+    func goToProfileUserVC(userId:String)
+}
+
 class MessageTableViewCell: UITableViewCell {
     
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var timestampLabel: UILabel!
+    var delegate:MessageTableViewCellDelegate?
     
     var message: MessageModel? {
         didSet {
@@ -74,7 +79,15 @@ class MessageTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        let tapGestureForNameLabel = UITapGestureRecognizer(target: self, action: #selector(self.nameLabel_TouchUpInside))
+        nameLabel.addGestureRecognizer(tapGestureForNameLabel)
+        nameLabel.isUserInteractionEnabled = true
+    }
+    
+    @objc func nameLabel_TouchUpInside(){
+        if let id = user?.id{
+            delegate?.goToProfileUserVC(userId: id)
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

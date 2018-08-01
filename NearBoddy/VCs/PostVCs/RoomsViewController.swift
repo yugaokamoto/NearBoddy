@@ -16,12 +16,27 @@ class RoomsViewController: UIViewController {
     var adress:String!
     var rooms = [RoomModel]()
     var users = [UserModel]()
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("adress \(self.adress)")
         tableView.dataSource = self
-         loadRoom()
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "引っ張って更新")
+        refreshControl.addTarget(self, action: #selector(refresh), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+        
+    loadRoom()
+    refreshControl.endRefreshing()
+    }
+    
+    @objc func refresh(){
+        rooms = [RoomModel]()
+        users = [UserModel]()
+        loadRoom()
+        tableView.reloadData()
+        refreshControl.endRefreshing()
     }
 
     func loadRoom(){
@@ -35,7 +50,6 @@ class RoomsViewController: UIViewController {
         Api.Room.REF_ROOMS.observe(.childAdded) { snapshot in
             print(Thread.isMainThread)
             if let dict = snapshot.value as? [String: Any] {
-//                print("plus \((dict["country"] as! String) + (dict["locality"] as! String))")
                 guard (((dict["country"] as! String) + (dict["administrativeArea"] as! String) + (dict["subAdministrativeArea"] as! String) + (dict["locality"] as! String) + (dict["subLocality"] as! String) + (dict["thoroughfare"] as! String) ) == self.adress) else{
                     return
                 }
@@ -43,7 +57,7 @@ class RoomsViewController: UIViewController {
                 let newRoom = RoomModel.transformRoom(dict: dict, key: snapshot.key)
                 print("newRoom \(dict)")
                 self.fetchUser(uid: newRoom.uid!, completion: {
-                    self.rooms.append(newRoom)
+                    self.rooms.insert(newRoom, at: 0)
                     self.tableView.reloadData()
                 })
             }
@@ -56,7 +70,7 @@ class RoomsViewController: UIViewController {
             snapshot in
             if let dict = snapshot.value as? [String: Any] {
                 let user = UserModel.transformUser(dict: dict, key: snapshot.key)
-                self.users.append(user)
+                self.users.insert(user, at: 0)
                 completion()
             }
         })
@@ -69,6 +83,14 @@ class RoomsViewController: UIViewController {
             let roomId = sender as! String
             chatVC.roomId = roomId
         }
+        
+        if segue.identifier == "ProfileUserSegue"{
+            let profileUserVC = segue.destination as! ProfileUserViewController
+            let userId = sender as! String
+            profileUserVC.userId = userId
+        }
+        
+        
     }
     
 }
@@ -93,6 +115,10 @@ extension RoomsViewController: UITableViewDataSource,UITableViewDelegate{
 }
 
 extension RoomsViewController:RoomsTableViewCellDelegate{
+    func goToProfileUserVC(userId: String) {
+        performSegue(withIdentifier: "ProfileUserSegue", sender: userId)
+    }
+    
     
     func goToChatVC(roomId: String) {
         performSegue(withIdentifier: "MessageSegue", sender: roomId)

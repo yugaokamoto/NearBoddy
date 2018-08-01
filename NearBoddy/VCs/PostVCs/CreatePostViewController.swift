@@ -47,8 +47,17 @@ class CreatePostViewController: UIViewController,CLLocationManagerDelegate {
                 ProgressHUD.showError(error!.localizedDescription)
                 return
             }
+            
+            let myPostsRef = Api.MyPosts.REF_MYPOSTS.child(currentUserId).child(newPostId)
+            myPostsRef.setValue(["timestamp":timestamp], withCompletionBlock: { (error, ref) in
+                if error != nil{
+                    ProgressHUD.showError(error!.localizedDescription)
+                    return
+                }
+            })
+            self.clean() 
             ProgressHUD.showSuccess("Success")
-            self.clean()
+            self.tabBarController?.selectedIndex = 0
         })
     }
     

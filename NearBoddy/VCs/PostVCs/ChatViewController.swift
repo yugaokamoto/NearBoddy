@@ -133,14 +133,14 @@ class ChatViewController: UIViewController {
                     ProgressHUD.showError(error!.localizedDescription)
                     return
                 }
-//                Api.Post.observePost(withId: self.postId, completion: { (post) in
-//                    if post.uid! != Auth.auth().currentUser!.uid {
-//                        let timestamp = NSNumber(value: Int(Date().timeIntervalSince1970))
-//                        let newNotificationId = Api.Notification.REF_NOTIFICATION.child(post.uid!).childByAutoId().key
-//                        let newNotificationReference = Api.Notification.REF_NOTIFICATION.child(post.uid!).child(newNotificationId)
-//                        newNotificationReference.setValue(["from": Auth.auth().currentUser!.uid, "objectId": self.postId!, "type": "comment", "timestamp": timestamp])
-//                    }
-//                })
+                Api.Room.observeRoom(withId: self.roomId, completion: { (room) in
+                    if room.uid! != Auth.auth().currentUser!.uid {
+                        let timestamp = NSNumber(value: Int(Date().timeIntervalSince1970))
+                        let newNotificationId = Api.Notification.REF_NOTIFICATION.child(room.uid!).childByAutoId().key
+                        let newNotificationReference = Api.Notification.REF_NOTIFICATION.child(room.uid!).child(newNotificationId)
+                        newNotificationReference.setValue( ["from": Auth.auth().currentUser!.uid, "objectId": self.roomId!, "type": "message", "timestamp": timestamp])
+                    }
+                })
             })
             self.empty()
             self.view.endEditing(true)
@@ -156,11 +156,11 @@ class ChatViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-//        if segue.identifier == "Comment_ProfileSegue"{
-//            let profileVC = segue.destination as! ProfileUserViewController
-//            let userId = sender as! String
-//            profileVC.userId = userId
-//        }
+        if segue.identifier == "Message_ProfileSegue"{
+            let profileUserVC = segue.destination as! ProfileUserViewController
+            let userId = sender as! String
+            profileUserVC.userId = userId
+        }
 //
 //        if segue.identifier == "Comment_HashTagSegue"{
 //            let hashTagVC = segue.destination as! HashTagViewController
@@ -185,17 +185,14 @@ extension ChatViewController: UITableViewDataSource{
         let user = users[indexPath.row]
         cell.message = message
         cell.user = user
-//        cell.delegate = self
+        cell.delegate = self
         return cell
     }
 }
 
-//extension CommentViewController:CommentTableViewCellDelegate{
-//    func goToProfileUserVC(userId: String) {
-//        performSegue(withIdentifier: "Comment_ProfileSegue", sender: userId)
-//    }
-//    func goToHashTag(tag: String) {
-//        performSegue(withIdentifier: "Comment_HashTagSegue", sender: tag)
-//    }
-//}
+extension ChatViewController:MessageTableViewCellDelegate{
+    func goToProfileUserVC(userId: String) {
+        performSegue(withIdentifier: "Message_ProfileSegue" , sender: userId)
+    }
+}
 

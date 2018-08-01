@@ -144,13 +144,22 @@
                     <connections>
                         <outlet property="tableView" destination="RVf-Es-STV" id="wqJ-ce-HHg"/>
                         <segue destination="OPB-zi-gIF" kind="show" identifier="MessageSegue" id="eQt-Zf-2u2"/>
+                        <segue destination="Oue-RK-5SU" kind="show" identifier="ProfileUserSegue" id="n2F-YM-2JP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="z2e-cz-eLL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-151.19999999999999" y="1488.305847076462"/>
         </scene>
-        <!--Post View Controller-->
+        <!--ProfileUserViewController-->
+        <scene sceneID="wtg-Wv-KvU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="Oue-RK-5SU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CXD-jS-xZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="125" y="1958"/>
+        </scene>
+        <!--投稿-->
         <scene sceneID="OUv-fS-kYt">
             <objects>
                 <viewController id="CsE-kX-veJ" customClass="PostViewController" customModule="NearBoddy" customModuleProvider="target" sceneMemberID="viewController">
@@ -219,12 +228,10 @@
                             </label>
                             <button opaque="NO" alpha="0.59999999999999998" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ROO-1G-TQj">
                                 <rect key="frame" x="42.5" y="455.5" width="80" height="80"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="bPm-Uc-1wd"/>
                                     <constraint firstAttribute="width" constant="80" id="gIJ-45-0Yb"/>
                                 </constraints>
-                                <state key="normal" title="rightButton"/>
                                 <connections>
                                     <action selector="goToRoomVC_Btn" destination="CsE-kX-veJ" eventType="touchUpInside" id="sB3-pe-8lp"/>
                                 </connections>
@@ -249,12 +256,10 @@
                             </label>
                             <button opaque="NO" alpha="0.55000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hNO-df-aHQ">
                                 <rect key="frame" x="147.5" y="455.5" width="80" height="80"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="KcL-Ef-SOe"/>
                                     <constraint firstAttribute="width" constant="80" id="Y5y-Ga-B8D"/>
                                 </constraints>
-                                <state key="normal" title="cenButton"/>
                                 <connections>
                                     <action selector="goToCreateRoomVC_Btn" destination="CsE-kX-veJ" eventType="touchUpInside" id="OBT-05-fxG"/>
                                 </connections>
@@ -273,12 +278,10 @@
                             </imageView>
                             <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZL5-ek-13q">
                                 <rect key="frame" x="253.5" y="455.5" width="80" height="80"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="HyR-uk-ZCF"/>
                                     <constraint firstAttribute="height" constant="80" id="upg-Hk-doV"/>
                                 </constraints>
-                                <state key="normal" title="leftButton"/>
                                 <connections>
                                     <action selector="goToCreatePostVC_Btn" destination="CsE-kX-veJ" eventType="touchUpInside" id="eao-bn-lV0"/>
                                 </connections>
@@ -332,7 +335,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="af1-wF-gMr"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xFS-Ue-Fn3"/>
+                    <navigationItem key="navigationItem" title="投稿" id="xFS-Ue-Fn3"/>
                     <connections>
                         <outlet property="NowlocationLabel" destination="iJ0-IU-HYx" id="kEN-vv-r3h"/>
                         <segue destination="3w2-5k-li7" kind="show" identifier="roomsVC" id="dea-0c-Boq"/>
@@ -364,6 +367,11 @@
                                     <constraint firstAttribute="height" constant="130" id="nkO-oq-TXK"/>
                                     <constraint firstAttribute="width" constant="130" id="rcL-H6-pIS"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="65"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bco-xz-cN2">
                                 <rect key="frame" x="100" y="472" width="175" height="32"/>
@@ -467,6 +475,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sMY-2A-7R4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="984.79999999999995" y="1490.1049475262371"/>
+        </scene>
+        <!--ProfileUserViewController-->
+        <scene sceneID="cKR-gR-MIa">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Profile" referencedIdentifier="ProfileUserViewController" id="4i4-JI-Fm5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9pv-UO-b3L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1920" y="1463"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="0qu-NT-AD9">
@@ -592,6 +608,7 @@
                         <outlet property="messageTextField" destination="Xqq-OA-F1T" id="qJ5-yb-l1O"/>
                         <outlet property="sendButton" destination="D2H-d4-wL3" id="NaT-h9-97K"/>
                         <outlet property="tableView" destination="XPg-Fz-CDp" id="j6q-3u-B4i"/>
+                        <segue destination="4i4-JI-Fm5" kind="show" identifier="Message_ProfileSegue" id="GIy-YE-Q5R"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KqL-Oo-8P3" userLabel="First Responder" sceneMemberID="firstResponder"/>

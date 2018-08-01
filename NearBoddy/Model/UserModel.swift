@@ -11,7 +11,9 @@ class UserModel {
     var email: String?
     var profileImageUrl: String?
     var username: String?
+    var headerImageUrl:String?
     var id: String?
+    var isFollowing:Bool?
 }
 
 extension UserModel {
@@ -20,6 +22,7 @@ extension UserModel {
         user.email = dict["email"] as? String
         user.profileImageUrl = dict["profileImageUrl"] as? String
         user.username = dict["username"] as? String
+        user.headerImageUrl = dict["headerImageUrl"] as? String
         user.id = key
         return user
     }
