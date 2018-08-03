@@ -51,7 +51,7 @@ class RoomsViewController: UIViewController {
             print(Thread.isMainThread)
             if let dict = snapshot.value as? [String: Any] {
                 guard (((dict["country"] as! String) + (dict["administrativeArea"] as! String) + (dict["subAdministrativeArea"] as! String) + (dict["locality"] as! String) + (dict["subLocality"] as! String) + (dict["thoroughfare"] as! String) ) == self.adress) else{
-                    return
+                    return ProgressHUD.showSuccess("まだ現在地付近にはルームがありません！")
                 }
                 
                 let newRoom = RoomModel.transformRoom(dict: dict, key: snapshot.key)

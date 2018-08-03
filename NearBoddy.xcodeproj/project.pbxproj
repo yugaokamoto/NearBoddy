@@ -316,6 +316,11 @@
 				TargetAttributes = {
 					9276697620FA547B00F60297 = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.SafariKeychain = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
